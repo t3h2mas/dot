@@ -1,9 +1,8 @@
 " :help [command] for more information 
 
 " Visual Changes
-colorscheme 
-syntax enable     " Turn on syntax highlighting
-set number        " Shows lines numbers along left side
+syntax on     " Turn on syntax highlighting
+set title
 set ruler         " Shows file stats in bottom right corner
 set visualbell    " Blink cursor on error instead of beeping 
 set cursorline    " Highlights current line
@@ -56,4 +55,7 @@ Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
+Plug 'lokaltog/vim-distinguished'
 call plug#end()
+set t_Co=256
+colorscheme distinguished
