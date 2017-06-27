@@ -1,19 +1,10 @@
-" :help [command] for more information 
-
-" Visual Changes
-syntax on     " Turn on syntax highlighting
-set title
-set ruler         " Shows file stats in bottom right corner
-set visualbell    " Blink cursor on error instead of beeping 
-set cursorline    " Highlights current line
-set wildmenu      " Visual autocomplete for command menu
-
-" Whitespace
-set wrap          " Visually wraps long lines
-set textwidth=80  " Max columns before wrap occurs 
-set tabstop=4     " Number of spaces a tab counts for visually
-set softtabstop=4 " Number of spaces a tab counts for when inserting/deleting
-set expandtab     " Tabs are spaces
+set expandtab
+set autoindent
+set number
+set nowrap
+set shiftwidth=2
+set tabstop=2
+set backspace=eol,indent,start
 
 " Last line
 set showmode      " Displays what mode we're in along the bottom bar
@@ -28,6 +19,12 @@ set showmatch     " Highlights matching [{()}]
 " JK/KJ Escape Map
 inoremap jk <Esc>
 inoremap kj <Esc>
+
+" upper HJKL
+nnoremap H ^
+nnoremap J 5j
+nnoremap K 5k
+nnoremap L g_
 
 " vim-airline
 set laststatus=2
@@ -56,6 +53,11 @@ Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'lokaltog/vim-distinguished'
+Plug 'mtth/scratch.vim'
 call plug#end()
+
+filetype plugin indent on
+syntax on
+
 set t_Co=256
 colorscheme distinguished
