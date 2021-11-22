@@ -1,63 +1,57 @@
-set expandtab
-set autoindent
-set number
-set nowrap
-set shiftwidth=2
-set tabstop=2
-set backspace=eol,indent,start
-
-" Last line
-set showmode      " Displays what mode we're in along the bottom bar
-set showcmd       " Shows command in bottom bar
-
-" Searching
-set incsearch     " Searches as characters are entered
-set hlsearch      " Highlights matches
-set ignorecase    " Ignores cases of characters to match
-set showmatch     " Highlights matching [{()}]
-
-" JK/KJ Escape Map
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" upper HJKL
-nnoremap H ^
-nnoremap J 5j
-nnoremap K 5k
-nnoremap L g_
-
-" vim-airline
-set laststatus=2
-" vim-airline themes
-let g:airline_theme='bubblegum'
-" vim-jsx don't require .jsx filename
-let g:jsx_ext_required = 0
-
-" nerdtree
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'pangloss/vim-javascript'
-Plug 'raimondi/delimitmate'
-Plug 'plasticboy/vim-markdown'
-Plug 'elzr/vim-json'
-Plug 'mxw/vim-jsx'
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'lokaltog/vim-distinguished'
-Plug 'mtth/scratch.vim'
+
+Plug 'sainnhe/sonokai'
+Plug 'tpope/vim-endwise'
+Plug 'dense-analysis/ale'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'jpalardy/vim-slime'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'thoughtbot/vim-rspec'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'vim-ruby/vim-ruby'
+
 call plug#end()
 
-filetype plugin indent on
-syntax on
+inoremap jk <ESC>
+inoremap kj <ESC>
+map ; :
 
-set t_Co=256
-colorscheme distinguished
+set number
+syntax on
+filetype plugin indent on
+filetype on
+filetype indent on
+
+set spell spelllang=en_us
+
+colorscheme sonokai
+
+" Splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+" Vim SLIME
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+
+" FZF
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+
+" Ruby
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+
+" RSPEC
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
