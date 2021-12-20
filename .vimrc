@@ -10,8 +10,14 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-ruby/vim-ruby'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
+
+colorscheme gruvbox8_soft
+set background=dark
 
 inoremap jk <ESC>
 inoremap kj <ESC>
@@ -19,13 +25,12 @@ map ; :
 
 set number
 syntax on
-filetype plugin indent on
 filetype on
+filetype plugin on
 filetype indent on
 
 set spell spelllang=en_us
 
-colorscheme sonokai
 
 " Splits
 nnoremap <C-J> <C-W><C-J>
@@ -48,6 +53,8 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 " Ruby
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 
 " RSPEC
 map <Leader>t :call RunCurrentSpecFile()<CR>
